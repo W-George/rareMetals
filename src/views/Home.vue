@@ -2,44 +2,6 @@
   <div>
     <Header></Header>
     <div class="main">
-      <div class="main_left">
-        <div class="main_leftDiv">
-          <h3>
-            铋/镍
-            <i></i>
-          </h3>
-          <ul>
-            <li v-for="(item, key) in data" :key="key">{{item}}</li>
-          </ul>
-        </div>
-        <div class="main_leftDiv">
-          <h3>
-            铟/钴 
-            <i></i>
-          </h3>
-          <ul>
-            <li v-for="(item, key) in data1" :key="key">{{item}}</li>
-          </ul>
-        </div>
-        <div class="main_leftDiv">
-          <h3>
-            碲/钼 
-            <i></i>
-          </h3>
-          <ul>
-            <li v-for="(item, key) in data2" :key="key">{{item}}</li>
-          </ul>
-        </div>
-        <div class="main_leftDiv">
-          <h3>
-            铌/钨 
-            <i></i>
-          </h3>
-          <ul>
-            <li v-for="(item, key) in data3" :key="key">{{item}}</li>
-          </ul>
-        </div>
-      </div>
       <div class="main_center">
         <div class="banner">
           <el-carousel height="300px">
@@ -76,57 +38,10 @@
     width: 1200px;
     margin: 0 auto;
     overflow: hidden;
-    .main_left{
-      float: left;
-      width: 218px;
-      border:1px solid #e6e6e6;
-      .main_leftDiv{
-        width: 100%;
-        height: 121px;
-        border-bottom: 1px dashed #e1e1e1;
-        &:last-child{
-          border: none;
-        }
-      }
-      h3{
-        width: 100%;
-        line-height: 35px;
-        font-size: 15px;
-        font-weight: normal;
-        position: relative;
-        padding: 0 20px 0 15px;
-        i{
-          background: url('../assets/icon.png');
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          height: 10px;
-          width: 7px;
-          background-position: -61px -2px
-        }
-      }
-      ul{
-        width: 100%;
-        margin-top: 3px;
-        padding: 0 20px 0 15px;
-        li{
-          float: left;
-          width: 58px;
-          height: 28px;
-          padding-right: 8px;
-          color: #666;
-          padding-bottom: 5px;
-          &:hover{
-            text-decoration: underline;
-            color: #f60;
-            cursor: pointer;
-          }
-        }
-      }
-    }
     .main_center{
       width: 780px;
       float: left;
+      margin-left: 218px;
       .banner{
         width: 760px;
         height: 300px;
@@ -247,10 +162,6 @@ export default {
   },
   data() {
     return {
-      data:["氧化铋","精铋","铋锭","铋粉","镍带","镍丝","镍粉","镍板","镍棒"],
-      data1:["铟丝","铟片","铟锭","铟粉","铟粒","粗铟","钴粉","铁钴","铂钴"],
-      data2:["碲粉","纯碲","碲粒","碲锭","碲丸","钼丝","钼片","钼粉","钼条"],
-      data3:["铌板","铌片","铌锭","钨棒","钨丝","钨板","钨条","钨粉","铌合金"],
       imgBannerUrl:["http://cos.solepic.com/20181211/201812111813518387.jpg",
         "http://cos.solepic.com/20181224/201812241809274945.jpg",
         "http://cos.solepic.com/20190111/201901111723428280.jpg",
