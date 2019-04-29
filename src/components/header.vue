@@ -130,6 +130,7 @@ export default {
             width: 219px;
             border:1px solid #e6e6e6;
             background: white;
+            z-index: 999;
             .main_leftDiv{
               width: 100%;
               height: 125px;

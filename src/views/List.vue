@@ -4,7 +4,7 @@
     <div class="list">
       <h3>当前位置: 稀有金属 > {{listTitle }}</h3>
       <div class="UlWarp">
-        <div class="Ullist" v-for="(i,k) in listArr" :key="k">
+        <div class="Ullist" v-for="(i,k) in listArr" :key="k" @click="$router.push({ name: 'details', params: i})">
           <img :src="i.img">
           <p>{{i.name}}</p>
           <div>
@@ -73,6 +73,7 @@ export default {
   .UlWarp{
     border-top: 1px solid #ddd;
     padding-bottom: 20px;
+    cursor: pointer;
     .Ullist{
       width: 100%;
       border-bottom: 1px solid #ddd;
