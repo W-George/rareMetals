@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home'
 import List from './views/List'
 import Details from './views/Details'
+import Car from './views/Car'
 
 Vue.use(Router)
 
@@ -19,9 +20,14 @@ export default new Router({
       component:List
     },
     {
-      path: '/details',
+      path: '/details/:id',
       name: 'details',
       component:Details
+    },
+    {
+      path: '/car',
+      name: 'car',
+      component:Car
     },
   ]
 })

@@ -20,7 +20,7 @@
             <span v-for="(item,key) in i.title" :key="key">{{item}}</span>
           </h3>
           <div class="listA">
-            <span v-for="(item,key) in i.content" :key="key">{{item}}</span>
+            <span v-for="(item,key) in i.content" :key="key" @click="$router.push(`/details/2+${k}+${key}`)">{{item}}</span>
           </div>
         </div>
       </div>

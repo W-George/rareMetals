@@ -24,7 +24,7 @@
                   <i></i>
                 </h3>
                 <ul>
-                  <li v-for="(item, key) in data" :key="key">{{item}}</li>
+                  <li v-for="(item, key) in data" :key="key" @click="$router.push(`/details/1+0+${key}`)">{{item}}</li>
                 </ul>
               </div>
               <div class="main_leftDiv">
@@ -33,7 +33,7 @@
                   <i></i>
                 </h3>
                 <ul>
-                  <li v-for="(item, key) in data1" :key="key">{{item}}</li>
+                  <li v-for="(item, key) in data1" :key="key" @click="$router.push(`/details/1+1+${key}`)">{{item}}</li>
                 </ul>
               </div>
               <div class="main_leftDiv">
@@ -42,7 +42,7 @@
                   <i></i>
                 </h3>
                 <ul>
-                  <li v-for="(item, key) in data2" :key="key">{{item}}</li>
+                  <li v-for="(item, key) in data2" :key="key" @click="$router.push(`/details/1+2+${key}`)">{{item}}</li>
                 </ul>
               </div>
               <div class="main_leftDiv">
@@ -51,7 +51,7 @@
                   <i></i>
                 </h3>
                 <ul>
-                  <li v-for="(item, key) in data3" :key="key">{{item}}</li>
+                  <li v-for="(item, key) in data3" :key="key" @click="$router.push(`/details/1+3+${key}`)">{{item}}</li>
                 </ul>
               </div>
             </div>

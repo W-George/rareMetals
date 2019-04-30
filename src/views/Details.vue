@@ -9,11 +9,11 @@
           <p>起批量 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1千克</p>
         </div>
         <h4>产品属性</h4>
-        <h5>公司名称:{{detailsData.company}}</h5>
-        <h5>发布时间:{{detailsData.time}}</h5>
+        <h5>公司名称:{{detailsData.company || '暂无信息'}}</h5>
+        <h5>发布时间:{{detailsData.time || '2019-01-06'}}</h5>
       </div>
     </div>
-    <button>加入购物车</button>
+    <button @click="addCard">加入购物车</button>
   </div>
 </template>
 
@@ -80,6 +80,9 @@
 <script>
 import Header from '../components/header'
 import PicZoom from './Details/PicZoom'
+import detailsData1 from '../assets/mock/details'
+import detailsData2 from '../assets/mock/details2'
+import detailsData3 from '../assets/mock/details3'
 export default {
   data() {
     return {
@@ -87,13 +90,51 @@ export default {
       img:''
     }
   },
+  methods:{
+    addCard(){
+      const obj  = {
+        name:this.detailsData.name,
+        img:this.detailsData.img,
+        num:1
+      }
+      this.$store.commit('updata',obj)
+    }
+  },
   mounted() {
-    this.detailsData = this.$route.params
-    this.img = this.detailsData.img
+    if (!this.$route.params.choose) {
+      const arr = this.$route.params.id.split('+')
+      if (arr[0] === '1') {
+        this.detailsData = detailsData1[arr[1]][arr[2]]
+        this.img = this.detailsData.img
+      }else if(arr[0] === '2'){
+        this.detailsData = detailsData2[arr[1]][arr[2]]
+        this.img = this.detailsData.img
+      }else{
+        this.detailsData = detailsData3[arr[1]][arr[2]]
+        this.img = this.detailsData.img
+      }
+    }else{
+      this.detailsData = this.$route.params.data
+      this.img = this.detailsData.img
+    }
   },
   components:{
     Header,
     PicZoom
-  }
+  },
+  beforeRouteUpdate (to, from, next) {
+    const arr = to.params.id.split('+')
+    if (arr[0] === '1') {
+        this.detailsData = detailsData1[arr[1]][arr[2]]
+        this.img = this.detailsData.img
+      }else if(arr[0] === '2'){
+        this.detailsData = detailsData2[arr[1]][arr[2]]
+        this.img = this.detailsData.img
+      }else{
+        this.detailsData = detailsData3[arr[1]][arr[2]]
+        this.img = this.detailsData.img
+      }
+    next()
+  },
 }
 </script>

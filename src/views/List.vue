@@ -4,7 +4,10 @@
     <div class="list">
       <h3>当前位置: 稀有金属 > {{listTitle }}</h3>
       <div class="UlWarp">
-        <div class="Ullist" v-for="(i,k) in listArr" :key="k" @click="$router.push({ name: 'details', params: i})">
+        <div class="Ullist" v-for="(i,k) in listArr" :key="k" @click="$router.push({ name: 'details', params: {
+          choose:true,
+          data:i
+        }})">
           <img :src="i.img">
           <p>{{i.name}}</p>
           <div>
