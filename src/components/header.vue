@@ -12,6 +12,17 @@
       </div>
     </div>
     <div class="navWarp">
+      <div class="car"  @mouseenter="carEnter" @mouseleave="carLeave" @click="goCar" v-if="$route.name!== 'car'">
+        <span>查看购物车</span>
+        <em v-show="carData.length !== 0">{{carData.length}}</em>
+        <div v-show="listShow" class="carList">
+          <div v-for="(i,k) in carData" :key="k">
+            <img :src="i.img" alt="">
+            <span class="spanName">{{ i.name}}</span>
+            <span class="spanNum">X{{i.num}}</span>
+          </div>
+        </div>
+      </div>
       <div class="nav">
         <ul class="navUl">
           <li class="navli" id="mainLi" @mouseenter="enter" @mouseleave="leave">
@@ -77,6 +88,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -84,8 +96,12 @@ export default {
       data1:["铟丝","铟片","铟锭","铟粉","铟粒","粗铟","钴粉","铁钴","铂钴"],
       data2:["碲粉","纯碲","碲粒","碲锭","碲丸","钼丝","钼片","钼粉","钼条"],
       data3:["铌板","铌片","铌锭","钨棒","钨丝","钨板","钨条","钨粉","铌合金"],
-      active:false
+      active:false,
+      listShow:false
     }
+  },
+  computed:{
+    ...mapState(['carData']),
   },
   mounted(){
     if (this.$route.name === 'home') {
@@ -102,6 +118,15 @@ export default {
       if (this.$route.name !== 'home') {
         this.active = false
       }
+    },
+    carEnter(){
+      this.listShow = true
+    },
+    carLeave(){
+      this.listShow = false
+    },
+    goCar(){
+      this.$router.push("/car")
     }
   },
 }
@@ -109,8 +134,71 @@ export default {
 
 <style lang="scss" scoped>
   .navWarp{
+    position: relative;
     width: 100%;
     background: #0897D7;
+    .car{
+      position: fixed;
+      right: 20px;
+      top: 80px;
+      background: url('http://shop.baojian.com/templates/master/baojian/images/jiafangnew/cart_bg1.gif') no-repeat;
+      width: 127px;
+      height: 35px;
+      padding-left: 39px;
+      padding-top: 6px;
+      margin-top: 20px;
+      color: #c0a894;
+      font-size: 13px;
+      z-index: 999;
+      .carList{
+        position: absolute;
+        width: 200px;
+        overflow: hidden;
+        left: -73px;
+        top: 30px;
+        border: 1px solid rgb(239, 239, 239);
+        border-radius: 5px;
+        z-index: 999;
+        div{
+          z-index: 999;
+          border-bottom: 1px solid rgb(239, 239, 239);
+          color: #000;
+          padding: 5px 0;
+          background: #fff;
+          img{
+            width: 60px;
+            height: 60px;
+          }
+          .spanName{
+            display: inline-block;
+            margin: 0 3px;
+            max-width: 105px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: relative;
+            top: 4px;
+          }
+          .spanNum{
+            float: right;
+            margin-top: 18px;
+            margin-right: 2px;
+          }
+        }
+      }
+      em{
+        display: block;
+        height: 24px;
+        left: 10px;
+        line-height: 21px;
+        position: absolute;
+        top: -17px;
+        width: 20px;
+        color: #fff;
+        background: url('http://shop.baojian.com/templates/master/baojian/images/jiafangnew/cartbg8.png') no-repeat;
+        text-align: center;
+      }
+    }
     .nav{
       width: 1200px;
       height: 40px;

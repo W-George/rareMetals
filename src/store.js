@@ -5,24 +5,45 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    data:[]
+    carData:[],
+    carNum:0
   },
   mutations: {
     updata(state, data) {
       var bStop = true
-      if (state.data.length === 0 ) {
-        state.data.push(data)
+      state.carNum += data.num
+      if (state.carData.length === 0 ) {
+        state.carData.push(data)
       }else{
-        state.data.map(item =>{
+        state.carData.map(item =>{
+          state.carNum += item.num
           if (item.name === data.name) {
             item.num ++
             bStop = false
           }
         })
         if (bStop) {
-          state.data.push(data)
+          state.carData.push(data)
         }
       }
     },
+    reduceShop(state,data){
+      state.carNum = 0
+      state.carData.map(item =>{
+        state.carNum += item.num
+        if (item.name === data.name) {
+          item.num --
+        }
+      })
+    },
+    deletShop(state,data){
+      state.carNum = 0
+      state.carData.map((item,key) =>{
+        if (item.name === data.name) {
+          state.carData.splice(key,1)
+        }
+        state.carNum += item.num
+      })
+    }
   }
 })

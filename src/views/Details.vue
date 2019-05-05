@@ -98,6 +98,10 @@ export default {
         num:1
       }
       this.$store.commit('updata',obj)
+      this.$message({
+          message: '加入购物车成功',
+          type: 'success'
+        });
     }
   },
   mounted() {
