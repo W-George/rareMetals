@@ -7,12 +7,12 @@
           <router-link to='/' tag="a">稀有金属网</router-link>
         </span>
         <p>
-          稀有金属商城,稀有金属批发,稀有金属交易网
+          <a style="cursor: pointer;" @click="$router.push(`/signin`)">登录</a>  &nbsp;稀有金属商城,稀有金属批发,稀有金属交易网
         </p>
       </div>
     </div>
     <div class="navWarp">
-      <div class="car"  @mouseenter="carEnter" @mouseleave="carLeave" @click="goCar" v-if="$route.name!== 'car'">
+      <div class="car"  @mouseenter="carEnter" @mouseleave="carLeave" @click="goCar" v-if="$route.name !== 'car' && $route.name !== 'signin' && $route.name !== 'signup'">
         <span>查看购物车</span>
         <em v-show="carData.length !== 0">{{carData.length}}</em>
         <div v-show="listShow" class="carList">

@@ -11,39 +11,45 @@ export default new Vuex.Store({
   mutations: {
     updata(state, data) {
       var bStop = true
-      state.carNum += data.num
+      var num = 0
       if (state.carData.length === 0 ) {
+        num += 1
         state.carData.push(data)
       }else{
         state.carData.map(item =>{
-          state.carNum += item.num
           if (item.name === data.name) {
             item.num ++
             bStop = false
           }
+          num += item.num
         })
         if (bStop) {
           state.carData.push(data)
+          num += 1
         }
       }
+      state.carNum = num
     },
     reduceShop(state,data){
-      state.carNum = 0
+      let num  = 0
       state.carData.map(item =>{
-        state.carNum += item.num
         if (item.name === data.name) {
           item.num --
         }
+        num += item.num
       })
+      state.carNum = num
     },
     deletShop(state,data){
-      state.carNum = 0
+      let num  = 0
       state.carData.map((item,key) =>{
         if (item.name === data.name) {
           state.carData.splice(key,1)
+        }else{
+          num += item.num
         }
-        state.carNum += item.num
       })
+      state.carNum = num
     }
   }
 })

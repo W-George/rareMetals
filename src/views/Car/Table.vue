@@ -53,7 +53,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <span class="allPrice">总价：{{carNum}}</span>
+    <span class="allPrice">总价：{{carNum * 20}}元</span>
   </div>
 </template>
 

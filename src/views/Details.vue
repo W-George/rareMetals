@@ -100,7 +100,8 @@ export default {
       this.$store.commit('updata',obj)
       this.$message({
           message: '加入购物车成功',
-          type: 'success'
+          type: 'success',
+          duration:'1000'
         });
     }
   },
