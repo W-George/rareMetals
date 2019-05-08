@@ -33,10 +33,14 @@
 
 <script>
 import Header from '../components/header'
+import axios from 'axios'
 export default {
   methods: {
     signup(){
-      
+      axios.post('/api/user/signup',{
+        username:123456,
+        password:123456
+      })
     }
   },
   data() {
