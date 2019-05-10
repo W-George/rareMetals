@@ -6,9 +6,20 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     carData:[],
-    carNum:0
+    carNum:0,
+    userinfo:null
   },
   mutations: {
+    signin(state,data){
+      state.userinfo = data
+      state.carData = JSON.parse(localStorage.getItem(data)) || []
+    },
+    logout(state){
+      localStorage.setItem(state.userinfo,JSON.stringify(state.carData))
+      state.userinfo = null
+      state.carData = []
+      state.carnum = 0
+    },
     updata(state, data) {
       var bStop = true
       var num = 0

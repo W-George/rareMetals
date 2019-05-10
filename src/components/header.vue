@@ -7,7 +7,12 @@
           <router-link to='/' tag="a">稀有金属网</router-link>
         </span>
         <p>
-          <a style="cursor: pointer;" @click="$router.push(`/signin`)">登录</a>  &nbsp;稀有金属商城,稀有金属批发,稀有金属交易网
+          <template v-if="userinfo">
+            欢迎您!! &nbsp;{{userinfo}}  <a style="cursor: pointer;" @click="gologout">退出</a>&nbsp;稀有金属商城,稀有金属批发,稀有金属交易网
+          </template>
+          <template v-else>
+            <a style="cursor: pointer;" @click="$router.push(`/signin`)">登录</a>  &nbsp;稀有金属商城,稀有金属批发,稀有金属交易网
+          </template>
         </p>
       </div>
     </div>
@@ -101,7 +106,7 @@ export default {
     }
   },
   computed:{
-    ...mapState(['carData']),
+    ...mapState(['carData','userinfo']),
   },
   mounted(){
     if (this.$route.name === 'home') {
@@ -109,6 +114,10 @@ export default {
     }
   },
   methods: {
+    gologout(){
+      this.$store.commit('logout')
+      this.$router.push(`/`)
+    },
     enter(){
       if (this.$route.name !== 'home') {
         this.active = true

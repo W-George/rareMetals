@@ -83,6 +83,7 @@ import PicZoom from './Details/PicZoom'
 import detailsData1 from '../assets/mock/details'
 import detailsData2 from '../assets/mock/details2'
 import detailsData3 from '../assets/mock/details3'
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -92,18 +93,32 @@ export default {
   },
   methods:{
     addCard(){
-      const obj  = {
-        name:this.detailsData.name,
-        img:this.detailsData.img,
-        num:1
-      }
-      this.$store.commit('updata',obj)
-      this.$message({
+      if (this.userinfo) {
+        const obj  = {
+          name:this.detailsData.name,
+          img:this.detailsData.img,
+          num:1
+        }
+        this.$store.commit('updata',obj)
+        this.$message({
           message: '加入购物车成功',
           type: 'success',
           duration:'1000'
         });
+      }else{
+        this.$message({
+          message: '请先登录！',
+          type: 'warning',
+          duration:'1000'
+        });
+        setTimeout(() => {
+          this.$router.push(`/signin`)
+        },1000)
+      }
     }
+  },
+  computed:{
+    ...mapState(['userinfo']),
   },
   mounted() {
     if (!this.$route.params.choose) {
